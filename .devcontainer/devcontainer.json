@@ -20,7 +20,6 @@
         "ms-azuretools.vscode-docker",
         "ClemensPeters.format-json",
         "ChaitanyaShahare.lazygit",
-        "ms-pyright.pyright",
         "charliermarsh.ruff"
       ]
     }
