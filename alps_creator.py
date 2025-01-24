@@ -28,7 +28,8 @@ class BedrockChat:
         """Bedrock Converse API를 사용하여 스트리밍 응답을 생성합니다."""
         try:
             # 새 메시지를 대화 기록에 추가
-            self.conversation_history.append({"role": "user", "content": message})
+            self.conversation_history.append(
+                {"role": "user", "content": message})
 
             # 첫 메시지일 때만 템플릿 포함
             if self.is_first_message:
@@ -140,14 +141,15 @@ async def start():
     """채팅 세션을 시작하고 ALPS 문서 생성기를 초기화합니다."""
     alps_creator = ALPSDocumentCreator()
     cl.user_session.set("alps_creator", alps_creator)
-    welcome_message = """ALPS 명세서 작성을 시작하겠습니다.
-
-사용 가능한 명령어:
+    welcome_message = """
+**사용 가능한 명령어:**
 - /preview: 현재까지의 문서 미리보기
 - /edit [섹션명]: 특정 섹션 수정
 - /save: 문서 저장
 
-작성 가능한 섹션:
+---
+
+저와 함께 다음 내용들을 함께 작성하게 됩니다:
 - overview: 개요
 - goal_metrics: MVP 목표와 핵심 지표
 - requirements_summary: 요구사항 요약
@@ -161,7 +163,12 @@ async def start():
 - out_of_scope: 기술적 부채 관리
 - appendix: 부록
 
-어떤 섹션부터 작성하시겠습니까?"""
+---
+
+그럼 ALPS 명세서 작성을 시작해볼까요?
+
+먼저 이번 MVP 를 통해 어떤 가설을 실험하고 싶으신지 알려주세요.
+""".strip()
     await cl.Message(content=welcome_message).send()
 
 
