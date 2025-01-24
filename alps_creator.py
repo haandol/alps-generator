@@ -1,5 +1,6 @@
 import chainlit as cl
 import boto3
+from typing import cast, Dict, Any, Optional
 from typing import AsyncGenerator
 from prompt import SYSTEM_PROMPT  # 추가된 임포트
 
@@ -16,7 +17,7 @@ def load_alps_template():
 
 class BedrockChat:
     def __init__(self):
-        self.client = boto3.client('bedrock-runtime')
+        self.client = boto3.client("bedrock-runtime")
         self.model_id = "anthropic.claude-3-5-sonnet-20241022-v2:0"
         self.system_prompt = SYSTEM_PROMPT
         self.template = load_alps_template()  # 템플릿 로드
@@ -27,8 +28,7 @@ class BedrockChat:
         """Bedrock Converse API를 사용하여 스트리밍 응답을 생성합니다."""
         try:
             # 새 메시지를 대화 기록에 추가
-            self.conversation_history.append(
-                {"role": "user", "content": message})
+            self.conversation_history.append({"role": "user", "content": message})
 
             # 첫 메시지일 때만 템플릿 포함
             if self.is_first_message:
@@ -37,20 +37,17 @@ class BedrockChat:
                 self.is_first_message = False
             else:
                 # 이후에는 대화 기록만 포함
-                conversation = "\n\n".join([
-                    f"{msg['role']}: {msg['content']}"
-                    for msg in self.conversation_history
-                ])
+                conversation = "\n\n".join(
+                    [
+                        f"{msg['role']}: {msg['content']}"
+                        for msg in self.conversation_history
+                    ]
+                )
                 context = f"{self.system_prompt}\n\n### 대화 기록:\n{conversation}"
 
             response = self.client.converse_stream(
                 modelId=self.model_id,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": [{"text": context}]
-                    }
-                ]
+                messages=[{"role": "user", "content": [{"text": context}]}],
             )
 
             # 스트리밍 응답 수신 및 저장
@@ -61,7 +58,8 @@ class BedrockChat:
 
             # 어시스턴트의 응답을 대화 기록에 추가
             self.conversation_history.append(
-                {"role": "assistant", "content": full_response})
+                {"role": "assistant", "content": full_response}
+            )
 
         except Exception as e:
             print(f"Error in get_stream_response: {e}")
@@ -69,16 +67,16 @@ class BedrockChat:
 
     async def _process_stream(self, response):
         """스트리밍 응답을 처리하는 헬퍼 메서드"""
-        for event in response['stream']:
-            if 'contentBlockDelta' in event:
-                if 'delta' in event['contentBlockDelta']:
-                    if 'text' in event['contentBlockDelta']['delta']:
-                        yield event['contentBlockDelta']['delta']['text']
+        for event in response["stream"]:
+            if "contentBlockDelta" in event:
+                if "delta" in event["contentBlockDelta"]:
+                    if "text" in event["contentBlockDelta"]["delta"]:
+                        yield event["contentBlockDelta"]["delta"]["text"]
 
 
 class ALPSDocumentCreator:
     def __init__(self):
-        self.sections = {
+        self.sections: Dict[str, Any] = {
             "overview": {},
             "goal_metrics": {},
             "requirements_summary": {},
@@ -90,9 +88,9 @@ class ALPSDocumentCreator:
             "deployment_operation": {},
             "mvp_metrics": {},
             "out_of_scope": {},
-            "appendix": {}
+            "appendix": {},
         }
-        self.current_section = None
+        self.current_section: Optional[str] = None
         self.bedrock_chat = BedrockChat()
 
     async def handle_section_input(self, section: str, user_input: str) -> None:
@@ -170,7 +168,9 @@ async def start():
 @cl.on_message
 async def main(message: cl.Message):
     """사용자 메시지를 처리합니다."""
-    alps_creator: ALPSDocumentCreator = cl.user_session.get("alps_creator")
+    alps_creator: ALPSDocumentCreator = cast(
+        ALPSDocumentCreator, cl.user_session.get("alps_creator")
+    )
 
     # 명령어 처리
     if message.content.startswith("/"):
@@ -181,26 +181,32 @@ async def main(message: cl.Message):
 
         elif command.startswith("edit"):
             section = command.split()[1]
-            await cl.Message(content=f"{section} 섹션의 새로운 내용을 입력해주세요.").send()
+            await cl.Message(
+                content=f"{section} 섹션의 새로운 내용을 입력해주세요."
+            ).send()
             alps_creator.current_section = section
 
         elif command == "save":
             filename = alps_creator.save_document()
-            await cl.Message(content=f"문서가 저장되었습니다: {filename}").send()
-            await cl.File(path=filename).send()
+            msg = await cl.Message(content=f"문서가 저장되었습니다: {filename}").send()
+            await cl.File(path=filename).send(for_id=msg.id)
 
         return
 
     # 일반 입력 처리
     if alps_creator.current_section:
-        await alps_creator.handle_section_input(alps_creator.current_section, message.content)
+        await alps_creator.handle_section_input(
+            alps_creator.current_section, message.content
+        )
         alps_creator.current_section = None
     else:
         # LLM에 일반 메시지 전송 및 스트리밍 응답 처리
         response_message = cl.Message(content="")
         await response_message.send()
 
-        async for chunk in alps_creator.bedrock_chat.get_stream_response(message.content):
+        async for chunk in alps_creator.bedrock_chat.get_stream_response(
+            message.content
+        ):
             await response_message.stream_token(chunk)
 
         await response_message.update()
