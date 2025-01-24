@@ -1,371 +1,268 @@
-## 1. 개요 (Overview)
+# 1. Overview
 
-### 1.1 목적
+### 1.1 Purpose
 
-**설명**
+**Description**
 
-- 문서 전체의 목적과 개요를 간단히 기술합니다.
+- Briefly describe the purpose and overview of the document.
 
-### 1.2 문서명
+### 1.2 Document Name
 
-**설명**
+**Description**
 
-- 문서의 정식 명칭을 기재합니다.
+- Provide the official name of the document.
 
-### 1.3 작성자
+### 1.3 Author
 
-**설명**
+**Description**
 
-- 작성자 혹은 담당자의 이름과 소속을 기재합니다.
+- Include the name and organization of the person responsible for writing the document.
 
-### 1.4 변경 이력
+### 1.4 Change History
 
-**설명**
+**Description**
 
-- 변경된 날짜와 변경된 주요 내용을 기록합니다.
+- Record the date and key summary of changes made to the document.
 
-**예시**
-
-```
-- 2025-01-01: 최초 작성
-- 2025-01-05: 요구사항 상세 추가
-```
-
----
-
-## 2. MVP 목표와 핵심 지표 (MVP Goal & Metrics)
-
-### 2.1 목적
-
-**설명**
-
-- 이번 MVP를 통해 검증하고자 하는 가설이나 목표를 간단히 기술합니다.
-
-**예시**
+**Example**
 
 ```
-"회원가입 후 30% 할인 쿠폰을 주면 14일 이내 재방문률이 증가할 것이다."
-```
-
-### 2.2 핵심 지표(KPI)
-
-**설명**
-
-- 위에서 제시한 목적(가설)을 평가하기 위한 정량적인 지표를 기술합니다.
-
-**예시**
-
-```
-"회원가입 후 14일 내 재방문율 30% 이상"
+- 2025-01-01: Initial draft
+- 2025-01-05: Added detailed requirements
 ```
 
 ---
 
-## 3. 요구사항 요약 (Requirements Summary)
+# 2. MVP Goals and Key Metrics
 
-### 3.1 핵심 기능 요구사항 (Functional Requirements)
+### 2.1 Purpose
 
-**설명**
+**Description**
 
-- 프로젝트에서 반드시 구현되어야 하는 기능을 정의합니다.
-- 각 기능은 고유 ID(Fx)를 부여받으며, 이 ID는 6. 주요 기능별 설계 섹션에서 반드시 참조됩니다.
-- 3.1에 기재된 항목은 개발 범위의 상한선을 정의하며, 추가적인 기능은 포함하지 않습니다.
-- 각 핵심 기능 요구사항(Fx)이 섹션 6에서 어떻게 설계되는지 매핑되어야 합니다.
+- State the hypothesis or goals to be validated during this MVP.
 
-**예시**
+**Example**
 
 ```
-- F1: 이메일로 회원가입
-- F2: 이메일로 로그인
-- F3: 간단한 메인 화면
-- F4: 게시글 작성
-- F5: 게시글 상세 조회
-...
+"Offering a 30% discount coupon after user registration will increase revisit rates within 14 days."
 ```
 
-### 3.2 비기능 요구사항 (Non Functional Requirements)
+### 2.2 Key Metrics (KPI)
 
-**설명**
+**Description**
 
-- 보안, 성능, 확장성 등 기능 외적인 요구사항을 정의합니다.
-- MVP 단계에서의 최소한의 기준을 설정하며, 자세한 세부 사항은 섹션 6 또는 아키텍처 섹션에 구체화될 수 있습니다.
+- Define quantitative metrics to measure the success of the MVP.
 
-**예시**
+**Example**
 
 ```
-- NF1: 보안 요구사항 최소화 (이메일 인증 미적용)
-- NF2: 성능 요구사항 (일 최대 1,000명 사용 가능)
-- NF3: 레이턴시 (3초 이내)
-- NF4: 시스템 안정성 (업타임 99.5% 이상)
-...
+"Revisit rate within 14 days after registration to exceed 30%."
 ```
-
-### 추가 주의사항
-
-- **요구사항 ID**
-	- 각 기능 요구사항은 F1, F2, … 형식의 고유 ID를 부여받아야 합니다.
-	- 이는 섹션 6에서의 설계와의 매핑을 용이하게 하기 위함입니다.
-- **확장 기능 포함 금지**
-	- 3.1에 정의되지 않은 확장 기능은 MVP 범위에서 제외됩니다.
-	- 확장 기능이 필요할 경우 “11. 기술적 부채 관리”에 기재합니다.
-- **요구사항-설계 매핑 확인**
-	- 섹션 3의 각 요구사항이 섹션 6의 어느 항목에서 구현되는지 확인하기 위해, 매핑 테이블(요구사항 ID와 설계 항목 ID 연결) 을 활용할 것을 권장합니다.
 
 ---
 
-## 4. 전체 아키텍처 개요 (High-level Architecture)
+# 3. Requirements Summary
 
-### 4.1 간단한 시스템 구성도
+### 3.1 Functional Requirements
 
-**설명**
+**Description**
 
-- 프로젝트의 전체적인 시스템 아키텍처를 간단히 나타냅니다.
-- C4 모델의 Context 다이어그램 등을 활용해, 어떤 주요 시스템이나 구성 요소가 있는지 표현합니다.
+- List the core functional requirements to be implemented in the project.
 
-**예시**
+**Example**
+
+```
+- F1: User registration via email
+- F2: Login via email
+- F3: Basic main screen
+```
+
+### 3.2 Non-Functional Requirements
+
+**Description**
+
+- Outline non-functional requirements such as security, performance, and scalability.
+
+**Example**
+
+```
+- NF1: Minimize security requirements (no email verification)
+- NF2: Performance (support up to 1,000 daily users)
+- NF3: Latency (under 3 seconds)
+```
+
+---
+
+# 4. High-Level Architecture
+
+### 4.1 System Overview (C4 Model – Context Level)
+
+**Description**
+
+- Provide a simplified diagram representing the overall system architecture. Use diagrams like C4 Context to describe system components and interactions.
+
+**Example**
 
 ```mermaid
 flowchart LR
-    사용자 --> 프론트엔드
-    프론트엔드 --> 백엔드
-    백엔드 --> DB
+    User --> Frontend
+    Frontend --> Backend
+    Backend --> Database
 ```
 
-### 4.2 기술 스택
+### 4.2 Tech Stack
 
-**설명**
+**Description**
 
-- 사용될 주요 기술 스택을 항목별로 정리합니다.
+- List the key technologies that will be used in the project.
 
-**예시**
+**Example**
 
 ```
-- 프론트엔드: React (Tailwind CSS)
-- 백엔드: Node.js (Express)
-- 데이터베이스: MongoDB
-- 인프라: AWS (EC2), GitHub Actions (CI/CD)
+- Frontend: React (Tailwind CSS)
+- Backend: Node.js (Express)
+- Database: MongoDB
+- Infrastructure: AWS (EC2), GitHub Actions (CI/CD)
 ```
 
 ---
 
-## 5. 디자인 스펙 (Design Specification)
+# 5. Design Specification
 
-**설명**
+### 5.1 Screen Structure & User Flow
 
-- MVP 단계에서 개발에 직접 반영될 최소한의 UI/UX 가이드를 정의합니다.
+#### 5.1.1 Key Screens (Pages)
 
-### 5.1 화면 구조 및 사용자 흐름 (User Flow)
+**Description**
 
-#### 5.1.1 주요 화면(페이지)
+- List the core screens or pages required in the MVP.
 
-**설명**
-
-- MVP에서 구현되어야 하는 핵심 화면의 종류를 기술합니다.
-
-**예시**
+**Example**
 
 ```
-- 메인 페이지
-- 회원가입/로그인 페이지
-- 게시글 작성 페이지
-- 게시글 상세/목록 페이지
+- Main Page
+- Registration/Login Page
+- Post Creation Page
+- Post Details/List Page
 ```
 
-#### 5.1.2 사용자 흐름
+#### 5.1.2 User Flow
 
-**설명**
+**Description**
 
-- 사용자가 각 화면 간 어떻게 이동하는지, 주요 시나리오를 요약합니다.
+- Describe how users navigate between screens and outline key user scenarios.
 
-**예시**
+**Example**
 
 ```
-1) 사용자는 메인 페이지 접근
-2) 회원가입/로그인 → 로그인 성공 시 메인 페이지로 리다이렉트
-3) 게시글 목록 확인 → 상세 페이지 진입 → 게시글 작성(로그인 필요)
-(선택) Mermaid Sequence Diagram 등으로 간단히 표현 가능
+1) User accesses the main page.  
+2) Registers/logs in → Redirected to the main page after login.  
+3) Views the post list → Accesses the details page → Creates a post (login required).  
+(Optional) Use tools like Mermaid Sequence Diagram for visual representation.
 ```
 
-### 5.2 페이지 레이아웃
+---
 
-#### 5.2.1 Page A (예시)
+### 5.2 Page Layout
 
-**설명**
+#### 5.2.1 Main Page
 
-- 페이지의 레이아웃(헤더, 컨텐츠, 푸터 등)을 구체적으로 정의합니다.
-- MVP 단계에서는 디자인 툴(Figma, Sketch) 없이도 **종이 스케치**나 간단한 레이아웃 공유로 충분합니다.
+**Description**
 
-**예시**
+- Define the layout of each core page, including headers, content, and footers.
+
+**Example**
 
 ```
 - Header (logo, Sign up/Login button)
-  - 로고: 왼쪽 정렬, 높이 40px
-  - 로그인/가입 버튼: 오른쪽 정렬, 패딩 8px 16px
+  - Logo: Left aligned, height 40px
+  - Sign up/Login button: Right aligned, padding 8px 16px
 
 - Main content (post list, search bar)
-  - 검색바: 상단 중앙 배치, 너비 50%
-  - 게시물 목록: 그리드 레이아웃
-    - PC: 3열 그리드(간격 24px)
-    - 태블릿: 2열 그리드
-    - 모바일: 1열 그리드
-  - 게시물 카드:
-    - 썸네일 이미지: 16:9 비율
-    - 제목: 2줄 제한
-    - 요약: 3줄 제한
+  - Search bar: Centered at the top, width 50%
+  - Post list: Grid layout
+    - Desktop: 3-column grid (24px spacing)
+    - Tablet: 2-column grid
+    - Mobile: 1-column grid
+  - Post card:
+    - Thumbnail image: 16:9 aspect ratio
+    - Title: Limit to 2 lines
+    - Summary: Limit to 3 lines
 
 - Footer (basic links)
-  - 높이: 60px
-  - 링크: 좌측 정렬, 간격 24px
-```
-
-#### 5.2.1 Page B (예시)
-
-**5.2.2 내용도 5.2.1 과 동일한 형식으로 작성합니다.**
-
-### 5.3 반응형 / 화면별 고려사항
-
-**설명**
-
-- PC와 모바일 등 서로 다른 화면 크기에 따른 배치/레이아웃 차이를 정리합니다.
-- MVP 우선순위에 따라 핵심 사용자 시나리오(PC 또는 Mobile)를 중점적으로 고려합니다.
-
-**예시**
-
-```
-- PC: 게시글 목록을 3열 그리드, 우측 로그인/회원가입 버튼
-- Mobile: 1열 리스트, 상단 고정 네비게이션
+  - Height: 60px
+  - Links: Left aligned, 24px spacing
 ```
 
 ---
 
-## 6. 주요 기능별 설계 (Feature-Level Specification)
+### 5.3 Responsive Design Considerations
 
-**설명**
+**Description**
 
-- 3.1의 각 핵심 기능 요구사항(Fx)을 상세히 설계합니다.
-- 3.1의 요구사항이 반드시 포함되어야 하며, 추가 기능은 포함하지 않습니다.
-- 각 설계 항목에서 다루는 요구사항 ID(Fx)를 명시하여, 3.1과 6번 섹션 간 매핑이 명확하도록 작성합니다.
+- Document layout differences across devices (e.g., mobile vs. desktop).
 
-### 6.1 기능 A (F1: 이메일 회원가입)
-
-#### 6.1.1 사용자 스토리
-
-**설명**
-
-- F1: 이메일 회원가입을 구현하기 위한 사용자 시나리오를 기술합니다.
-- 사용자가 어떤 상황에서, 어떤 단계로 기능을 사용하는지 작성합니다.
-
-**예시**
+**Example**
 
 ```
-
-1. 사용자는 회원가입 버튼을 클릭합니다.
-2. 이메일, 비밀번호를 입력한 뒤, "회원가입" 버튼을 클릭합니다.
-3. 회원가입이 성공하면, 메인 화면으로 리다이렉트됩니다.
-
+- Desktop: Post list in a 3-column grid; Sign up/Login button on the right.
+- Mobile: Post list in a single-column layout; Fixed navigation at the top.
 ```
-
-#### 6.1.2 UI 흐름
-
-**설명**
-
-- 사용자 인터페이스에서 해당 기능이 어떻게 표현되는지 서술합니다.
-- 페이지 간 이동 흐름, 주요 UI 요소를 간단히 설명합니다.
-
-**예시**
-
-```
-
-1. 회원가입 폼 (이메일 입력, 비밀번호 입력, 확인 버튼)
-2. 폼 제출 시 API 호출 → 성공 시 메인 화면으로 이동
-
-```
-
-#### 6.1.3 API 명세
-
-**설명**
-
-- F1을 구현하기 위한 API Endpoint와 Request/Response 구조를 정의합니다.
-
-**예시**
-
-```
-- Endpoint: POST /api/users
-- Request: { email: string, password: string }
-- Response: { userId: string, email: string }
-```
-
-#### 6.1.4 DB 스키마
-
-**설명**
-
-- F1을 위해 필요한 데이터베이스 구조를 정의합니다.
-
-**예시**
-
-```
-
-users 테이블:
-
-- id: primary key
-- email: string (unique)
-- password: string (hashed)
-- createdAt: timestamp
-
-```
-
-#### 6.1.5 테스트 케이스
-
-**설명**
-
-- F1에 대한 정상 시나리오와 에러 시나리오를 정의합니다.
-
-**예시**
-
-```
-1. 정상 시나리오:
-    - 올바른 이메일과 비밀번호를 입력하면 회원가입이 성공한다.
-
-2. 에러 시나리오:
-    - 중복된 이메일을 입력하면 에러를 반환한다.
-    - 이메일 또는 비밀번호를 입력하지 않으면 에러를 반환한다.
-```
-
-### 6.2 기능 B (F2: 이메일 로그인)
-
-**6.2 내용도 6.1과 동일한 형식으로 작성합니다.**
-
-### 6.3 기능 C (F3: 간단한 메인 화면)
-
-**6.3 내용도 6.1과 동일한 형식으로 작성합니다.**
-
-### 기능별 설계 작성 시 주의사항
-
-1. **3.1 요구사항과 매핑**
-	- 각 기능 설계(6.1, 6.2…)는 반드시 3.1의 요구사항 ID(Fx)를 참조해야 합니다.
-2. **추가 기능 금지**
-	- 3.1에 포함되지 않은 기능은 설계에 추가하지 않습니다.
-3. **매핑 테이블 활용**
-	- 요구사항이 누락되지 않도록, 요구사항-설계 매핑 표를 추가로 작성할 수 있습니다.
 
 ---
 
-# 7. 데이터 모델 / 스키마 (Data Model)
+# 6. Feature-Level Specification
 
-**설명**
+### 6.1 Feature A (e.g., User Registration)
 
-- 데이터베이스 구조 또는 테이블/컬렉션 설계를 간단히 기술합니다.
-- 각 테이블(또는 컬렉션)과 컬럼(또는 필드)의 관계, 자료형 등을 명시합니다.
-- SQL 테이블의 경우 테이블을 생성하는 SQL 쿼리문을 작성합니다.
+#### 6.1.1 User Story A1
 
-**예시**
+**Description**
+
+1. Define the user story: Describe the feature in the context of user interaction.
+2. UI Flow: Outline the user flow through the UI.
+3. API Specification: Define API endpoints and request/response data.
+4. Database Schema: Provide the database structure related to the feature.
+5. Test Cases: Specify normal and error scenarios to validate the feature.
+
+**Example**
 
 ```
-테이블 및 컬렉션:
-- User (사용자 정보)
-- Post (게시글 정보)
+1) User Story: A user can register using their email address.  
+2) UI Flow:
+   - Click "Sign up" → Fill out the registration form → Registration successful → Redirect to main page.  
+3) API Specification:
+   - POST /api/users
+     - Request: { email, password }
+     - Response: { userId, ... }
+4) Database Schema:
+   - User(id, email, password, createdAt, ...)
+5) Test Cases:
+   - Successful registration, duplicate email error, missing input error, etc.
+```
 
-간단한 MongoDB 스키마 예시:
+#### 6.1.2 User Story A2
+
+**Description**
+
+- Repeat for additional user stories, such as optional features or variations.
+
+---
+
+# 7. Data Model / Schema
+
+**Description**
+
+- Define the database tables/collections and their fields. Mention relationships between tables/collections.
+
+**Example**
+
+```
+Tables and Collections:
+- User (User information)
+- Post (Post information)
+
+Simple MongoDB Schema Example:
   // users collection
   {
     _id: ObjectId,
@@ -386,94 +283,108 @@ users 테이블:
 
 ---
 
-# 8. API 명세 (API Endpoint Spec)
+# 8. API Specification
 
-**설명**
+**Description**
 
-- 주요 API Endpoint마다 Method, Request Body/Params, Response, 역할을 표 형태로 정의합니다.
+- List each API endpoint, HTTP method, and define request/response data with a brief description.
 
-**예시**
+**Example**
 
-| Endpoint       | Method | Description | Request Body/Params | Response               |
-| -------------- | ------ | ----------- | ------------------- | ---------------------- |
-| /api/users     | POST   | 사용자 회원가입    | { email, password } | { userId, email, ... } |
-| /api/users/:id | GET    | 사용자 정보 조회   | path param: userId  | { userId, email, ... } |
-| /api/posts     | POST   | 게시글 등록      | { title, content }  | { postId, title, ... } |
-| /api/posts/:id | GET    | 게시글 상세 조회   | path param: postId  | { postId, title, ... } |
-| ...            | ...    | ...         | ...                 | ...                    |
-
----
-
-# 9. 배포 및 운영 (Deployment & Operation)
-
-### 9.1 배포 방법
-
-**설명**
-
-- 프로젝트 배포 방법 및 사용할 도구에 대해 간단히 서술합니다.
-
-**예시**
-
-```
-GitHub Actions를 통해 빌드 후, AWS EC2에 자동 배포
-```
-
-### 9.2 기본 모니터링
-
-**설명**
-
-- 로그 확인, 에러 모니터링, 알림 방식 등에 대해 간단히 서술합니다.
-
-**예시**
-
-```
-- AWS CloudWatch 로그 모니터링
-- 에러 발생 시 Slack 알림
-```
+|Endpoint|Method|Description|Request Body/Params|Response|
+|---|---|---|---|---|
+|/api/users|POST|User registration|{ email, password }|{ userId, email, ... }|
+|/api/users/:id|GET|Get user details|path param: userId|{ userId, email, ... }|
+|/api/posts|POST|Create a post|{ title, content }|{ postId, title, ... }|
+|/api/posts/:id|GET|Get post details|path param: postId|{ postId, title, ... }|
+|...|...|...|...|...|
 
 ---
 
-# 10. MVP 측정 항목 (MVP Metrics)
+# 9. Deployment & Operation
 
-### 10.1 수집할 데이터 목록
+### 9.1 Deployment Method
 
-**설명**
+**Description**
 
-- MVP 목표 달성을 위해 추적해야 할 지표 및 이벤트를 기술합니다.
+- Describe the deployment pipeline and automation tools used.
 
-**예시**
-
-```
-- 회원가입 버튼 클릭 횟수
-- 게시글 작성 버튼 클릭 횟수
-- 로그인 후 14일 내 재방문 횟수
-```
-
-### 10.2 데이터 수집 방법
-
-**설명**
-
-- 이벤트 발생 시점, 로그 서버 혹은 DB 저장 방식 등을 설명합니다.
-
-**예시**
+**Example**
 
 ```
-- 이벤트 발생 시 /log/metrics API 호출 → DB 저장
+Automatic deployment via GitHub Actions to AWS EC2.
+```
+
+### 9.2 Basic Monitoring
+
+**Description**
+
+- Outline the monitoring setup, such as log tracking and alert mechanisms.
+
+**Example**
+
+```
+- AWS CloudWatch for log monitoring.
+- Slack notifications for error alerts.
 ```
 
 ---
 
-# 11. 기술적 부채 관리 (Out of scope)
+# 10. MVP Metrics
 
-**설명**
+### 10.1 Data Collection Items
 
-- MVP 범위에서 제외되거나 간소화된 부분(보안, 에러 처리, 인증 로직 등)을 명시합니다.
-- 추후 리팩토링 또는 확장을 위해 이슈로 남길 항목을 정리합니다.
+**Description**
 
-**예시**
+- Define the metrics and events to track for MVP evaluation.
+
+**Example**
 
 ```
-- 로그인 인증 로직 간소화(OAuth 미적용)
-- 게시글 등록 시 에러 로깅 최소화
-- 향후 운영 시 보안 강화 필요
+- Number of sign-up button clicks.
+- Number of post creation button clicks.
+- Revisit frequency within 14 days after login.
+```
+
+### 10.2 Data Collection Method
+
+**Description**
+
+- Explain how events will be tracked and stored.
+
+**Example**
+
+```
+- Trigger /log/metrics API on events → Save data in the database.
+```
+
+---
+
+# 11. Technical Debt Management (Out of Scope)
+
+**Description**
+
+- List items excluded from the MVP scope or simplified for this phase. Document these for future improvement.
+
+**Example**
+
+```
+- Simplified login authentication (no OAuth)
+- Limited error logging for post creation
+- Enhanced security needed for production
+```
+
+---
+
+# 12. Appendix
+
+**Description**
+
+- Include additional references, terminology definitions, or other supplementary materials.
+
+**Example**
+
+```
+- Glossary of terms
+- Links to reference documents
 ```
